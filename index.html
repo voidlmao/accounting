@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="accounting — 簡單、私密、跨裝置版面友善的個人記帳網頁。">
+  <title>accounting. — 每一筆，都更清楚</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14 18-6-6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m10 18 6-6-6-6"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-1.82 1.82-.06-.06A1.65 1.65 0 0 0 16.1 18.3a1.65 1.65 0 0 0-1.1 1.53V20H9v-.17a1.65 1.65 0 0 0-1.1-1.53 1.65 1.65 0 0 0-1.81.34l-.06.06-1.82-1.82.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.53-1.1H3v-3.8h.07A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06L6.03 5.3l.06.06A1.65 1.65 0 0 0 7.9 5.7 1.65 1.65 0 0 0 9 4.17V4h6v.17a1.65 1.65 0 0 0 1.1 1.53 1.65 1.65 0 0 0 1.81-.34l.06-.06 1.82 1.82-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.53 1.1H21v3.8h-.07A1.65 1.65 0 0 0 19.4 15Z"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-arrow-down-left" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7v10h10"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 9V6a3 3 0 0 1 3-3h12M16 13h5M16 13h.01"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9M4 20h4l11-11a2.83 2.83 0 0 0-4-4L4 16v4Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V5m-4 4 4-4 4 4M4 16v4h16v-4"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></symbol>
+  </svg>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="accounting 首頁">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>accounting<span class="brand-dot">.</span></span>
+      </a>
+      <div class="header-actions">
+        <span class="private-note"><span class="private-dot"></span> 儲存在此裝置</span>
+        <button class="icon-button settings-btn" type="button" id="openSettings" aria-label="設定與資料備份" title="設定與資料備份"><svg><use href="#i-settings"/></svg></button>
+        <button class="button button-primary header-add" type="button" data-open-add><svg><use href="#i-plus"/></svg><span>新增記錄</span></button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR MONEY, CLEARLY.</div>
+          <h1 id="hero-title">每一筆，<span class="serif-accent">都更清楚。</span></h1>
+          <p>掌握生活的每一筆收支，從今天開始。</p>
+        </div>
+        <div class="month-picker" aria-label="查看月份">
+          <button type="button" class="month-arrow" id="prevMonth" aria-label="上一個月"><svg><use href="#i-chevron-left"/></svg></button>
+          <div class="month-label"><span class="month-caption">目前查看</span><strong id="monthLabel"></strong></div>
+          <button type="button" class="month-arrow" id="nextMonth" aria-label="下一個月"><svg><use href="#i-chevron-right"/></svg></button>
+        </div>
+      </section>
+
+      <section class="summary-cards" aria-label="本月收支總覽">
+        <article class="summary-card summary-balance">
+          <div class="card-top"><span>本月結餘</span><span class="summary-symbol"><svg><use href="#i-wallet"/></svg></span></div>
+          <div id="balanceAmount" class="summary-number" aria-live="polite">NT$ 0</div>
+          <div class="card-foot"><span class="light-pill">收入 − 支出</span><span>留下來的每一分</span></div>
+          <div class="balance-decor" aria-hidden="true"></div>
+        </article>
+        <article class="summary-card">
+          <div class="card-top"><span>本月收入</span><span class="summary-symbol income-symbol"><svg><use href="#i-arrow-down-left"/></svg></span></div>
+          <div id="incomeAmount" class="summary-number">NT$ 0</div>
+          <div class="card-foot"><span class="dot green"></span><span id="incomeCount">0 筆收入記錄</span></div>
+        </article>
+        <article class="summary-card">
+          <div class="card-top"><span>本月支出</span><span class="summary-symbol expense-symbol"><svg><use href="#i-arrow-up-right"/></svg></span></div>
+          <div id="expenseAmount" class="summary-number">NT$ 0</div>
+          <div class="card-foot"><span class="dot orange"></span><span id="expenseCount">0 筆支出記錄</span></div>
+        </article>
+      </section>
+
+      <section class="insights" aria-label="本月收支分析">
+        <article class="panel category-panel">
+          <div class="section-header"><div><div class="section-kicker">SPENDING BREAKDOWN</div><h2>支出去哪了？</h2></div><span class="subtle-tag">本月分類</span></div>
+          <div class="category-content">
+            <div class="donut-wrap"><div class="donut" id="spendingDonut"><div class="donut-inner"><span>本月支出</span><strong id="donutTotal">NT$ 0</strong></div></div></div>
+            <div class="legend" id="categoryLegend"><p class="muted-empty">還沒有支出記錄。</p></div>
+          </div>
+        </article>
+        <article class="panel budget-panel">
+          <div class="section-header"><div><div class="section-kicker">MONTHLY BUDGET</div><h2>預算進度</h2></div><button class="inline-link" type="button" id="openBudget">設定預算 <svg><use href="#i-arrow-up-right"/></svg></button></div>
+          <div class="budget-content">
+            <div class="budget-big" id="budgetPercent">—<span>%</span></div>
+            <div class="budget-desc" id="budgetDescription">設定每月預算，看看花費是否在掌握中。</div>
+            <div class="progress-track"><div class="progress-fill" id="budgetProgress"></div></div>
+            <div class="budget-bottom"><div><span>已使用</span><strong id="budgetSpent">NT$ 0</strong></div><div><span>每月預算</span><strong id="budgetLimit">尚未設定</strong></div></div>
+            <p class="budget-tip" id="budgetTip">小習慣，也能帶來大改變。</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="transactions-section" aria-labelledby="transactionTitle">
+        <div class="transactions-heading"><div><div class="section-kicker">TRANSACTIONS</div><h2 id="transactionTitle">收支明細 <span id="transactionCount">0</span></h2></div><button type="button" class="button button-outline list-add" data-open-add><svg><use href="#i-plus"/></svg> 記一筆</button></div>
+        <div class="transactions-panel">
+          <div class="filter-row">
+            <div class="tabs" role="group" aria-label="記錄篩選">
+              <button type="button" class="tab active" data-filter="all" aria-pressed="true">全部</button>
+              <button type="button" class="tab" data-filter="expense" aria-pressed="false">支出</button>
+              <button type="button" class="tab" data-filter="income" aria-pressed="false">收入</button>
+            </div>
+            <label class="search-field"><svg><use href="#i-search"/></svg><input id="searchInput" type="search" placeholder="搜尋記錄或分類" aria-label="搜尋記錄或分類" maxlength="70"></label>
+          </div>
+          <div id="transactionList" class="transaction-list" aria-live="polite"></div>
+        </div>
+      </section>
+      <footer class="footer"><span>accounting. © 2026</span><span>簡單記錄，安心生活。所有資料只保留在你的瀏覽器中。</span></footer>
+    </main>
+    <button class="floating-add" type="button" data-open-add aria-label="新增記錄"><svg><use href="#i-plus"/></svg></button>
+  </div>
+
+  <dialog id="transactionDialog" class="modal">
+    <form id="transactionForm" class="modal-content" novalidate>
+      <div class="modal-header"><div><div class="section-kicker">NEW ENTRY</div><h2 id="transactionDialogTitle">新增一筆記錄</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="關閉"><svg><use href="#i-close"/></svg></button></div>
+      <div class="type-toggle" role="group" aria-label="收支種類"><button type="button" data-type="expense" class="type-button active" aria-pressed="true">↗ 支出</button><button type="button" data-type="income" class="type-button" aria-pressed="false">↙ 收入</button></div>
+      <input type="hidden" name="type" id="entryType" value="expense">
+      <input type="hidden" id="editId" value="">
+      <label class="field amount-field"><span>金額 <em>NTD</em></span><div class="amount-input"><strong>NT$</strong><input required id="entryAmount" type="number" min="0.01" max="999999999" step="0.01" inputmode="decimal" placeholder="0" aria-label="金額"></div></label>
+      <div class="field-grid">
+        <label class="field"><span>分類</span><select required id="entryCategory"></select></label>
+        <label class="field"><span>日期</span><input type="date" id="entryDate" required></label>
+      </div>
+      <label class="field"><span>備註 <em>選填</em></span><input id="entryNote" type="text" maxlength="90" placeholder="例如：午餐、捷運、零用錢"></label>
+      <p class="form-error" id="formError" role="alert" hidden></p>
+      <div class="form-actions"><button type="button" class="button button-ghost" data-close-dialog>取消</button><button type="submit" class="button button-primary form-submit">儲存記錄 <svg><use href="#i-arrow-up-right"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="modal">
+    <div class="modal-content settings-content">
+      <div class="modal-header"><div><div class="section-kicker">YOUR SETTINGS</div><h2>設定與資料</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="關閉"><svg><use href="#i-close"/></svg></button></div>
+      <section class="settings-block"><h3>每月預算</h3><p>設定每個月份共用的支出上限；不會限制你記帳。</p><form id="budgetForm" class="budget-form"><label class="field"><span>預算金額（NTD，輸入 0 代表取消）</span><input type="number" min="0" max="999999999" step="1" id="budgetInput" placeholder="例如：5000" required></label><button class="button button-primary" type="submit">儲存預算</button></form></section>
+      <section class="settings-block"><h3>備份與匯出</h3><p>你的資料只儲存在目前的瀏覽器，不會自動同步到其他手機或電腦。建議定期匯出 JSON 備份。</p><div class="setting-action-grid"><button type="button" class="button button-outline" id="exportJson"><svg><use href="#i-download"/></svg> JSON 備份</button><button type="button" class="button button-outline" id="exportCsv"><svg><use href="#i-download"/></svg> 匯出 CSV</button><label class="button button-outline upload-label" for="importFile"><svg><use href="#i-upload"/></svg> 匯入 JSON</label><input type="file" id="importFile" accept=".json,application/json" hidden></div><p class="tiny-note">匯入 JSON 會取代目前全部記錄及預算。CSV 可用 Excel 開啟。</p></section>
+      <section class="settings-block danger-block"><h3>清除所有資料</h3><p>刪除後無法復原。請先備份。</p><button class="button button-danger" type="button" id="clearData">清除全部資料</button></section>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
